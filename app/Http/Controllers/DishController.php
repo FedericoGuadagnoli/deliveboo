@@ -44,6 +44,7 @@ class DishController extends Controller
             $data['image'] = $img_url;
         }
         $dish = new Dish();
+        $dish->availability = $data['availability'] ? 1 : 0;
         $dish->fill($data);
         $dish->slug = Str::slug($data['name'], '-');
         $dish->restaurant_id = $restaurant_id;
@@ -82,6 +83,7 @@ class DishController extends Controller
             $img_url = Storage::put('dishes', $data['image']);
             $data['image'] = $img_url;
         }
+        $dish->availability = $data['availability'] ? 1 : 0;
         $dish->fill($data);
         $dish->slug = Str::slug($data['name'], '-');
         $dish->save();
