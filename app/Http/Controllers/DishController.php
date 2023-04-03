@@ -94,7 +94,11 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
-        //
+        if ($dish->image) {
+            Storage::delete($dish->image);
+        }
+        $dish->delete();
+        return to_route('auth.dishes.index');
     }
 
     private function validation(Request $request)
