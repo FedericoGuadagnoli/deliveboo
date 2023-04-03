@@ -21,12 +21,13 @@
 
 <body>
     <div id="app">
-@include('includes.navbar')
+        @include('includes.navbar')
 
         <main class="">
             @yield('content')
         </main>
     </div>
+    @yield('scripts')
 </body>
 
 </html>

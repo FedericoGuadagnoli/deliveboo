@@ -1,4 +1,7 @@
-<form action="{{ route('admin.dishes.store') }}" method="post">
-    @csrf
-    <button>vai</button>
-</form>
+@extends('layouts.app')
+@section('content')
+    <div class="container mt-5">
+
+        @include('includes.dishes.form')
+    </div>
+@endsection
