@@ -7,8 +7,8 @@
         <div class="card-body text-center">
           <h5 class="card-title fw-bold">I TUOI PIATTI</h5>
           <p class="card-text">Visualizza, modifica e aggiungi i piatti del tuo ristorante.</p>
-          {{-- <a href="{{ route('admin.dishes.index') }}" class="btn btn-green">MENU</a> --}}
-          <a href="#" class="btn btn-green"><i class="fa-solid fa-utensils me-2"></i>MENU</a>
+          <a href="{{ route('admin.dishes.index') }}" class="btn btn-green"><i class="fa-solid fa-utensils me-2"></i>MENU</a>
+          {{-- <a href="#" class="btn btn-green"><i class="fa-solid fa-utensils me-2"></i>MENU</a> --}}
         </div>
       </div>
 
