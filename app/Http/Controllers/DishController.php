@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DishController extends Controller
 {
@@ -12,7 +13,10 @@ class DishController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::id();
+        $dishes = Dish::where('restaurant_id', $user_id)->paginate();
+
+        return view('auth.dishes.index', compact('dishes'));
     }
 
     /**
@@ -20,7 +24,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        $dish = new Dish();
+        return view('auth.dishes.create', compact('dish'));
     }
 
     /**
@@ -28,7 +33,6 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
