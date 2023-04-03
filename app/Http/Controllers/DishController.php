@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Dish;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class DishController extends Controller
@@ -37,6 +39,10 @@ class DishController extends Controller
         $this->validation($request);
         $data = $request->all();
         $restaurant_id = Auth::user()->restaurant->id;
+        if (Arr::exists($data, 'image')) {
+            $img_url = Storage::put('dishes', $data['image']);
+            $data['image'] = $img_url;
+        }
         $dish = new Dish();
         $dish->fill($data);
         $dish->slug = Str::slug($data['name'], '-');
@@ -59,6 +65,7 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
+        return view('auth.dishes.edit', compact('dish'));
     }
 
     /**
@@ -66,7 +73,20 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        //
+        $this->validation($request);
+        $data = $request->all();
+        if (Arr::exists($data, 'image')) {
+            if ($dish->image) {
+                Storage::delete($dish->image);
+            }
+            $img_url = Storage::put('dishes', $data['image']);
+            $data['image'] = $img_url;
+        }
+        $dish->fill($data);
+        $dish->slug = Str::slug($data['name'], '-');
+        $dish->save();
+
+        return to_route('auth.dishes.show', $dish->id);
     }
 
     /**
