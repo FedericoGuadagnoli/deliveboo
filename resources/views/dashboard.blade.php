@@ -1,26 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container d-flex dashboard justify-content-around">
-    <div class="card card-dash" style="width: 18rem;">
-        <img src="https://hubicmarketing.it/images/2016/04/elementi-chiave-menu.jpg" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-          <h5 class="card-title fw-bold">I TUOI PIATTI</h5>
-          <p class="card-text">Visualizza, modifica e aggiungi i piatti del tuo ristorante.</p>
-          <a href="{{ route('admin.dishes.index') }}" class="btn btn-green"><i class="fa-solid fa-utensils me-2"></i>MENU</a>
-          {{-- <a href="#" class="btn btn-green"><i class="fa-solid fa-utensils me-2"></i>MENU</a> --}}
-        </div>
-      </div>
+<div class="container dashboard">
 
-      <div class="card card-dash" style="width: 18rem;">
-        <img src="https://www.zucchetti.it/website/dms/website/soluzioni_per_settori/ordine_478x316.jpg" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-          <h5 class="card-title fw-bold">I TUOI ORDINI</h5>
-          <p class="card-text">Visualizza e gestisci tutti gli ordini del tuo ristorante.</p>
-          {{-- <a href="{{ route('admin.orders.index') }}" class="btn btn-green">ORDINI</a> --}}
-          <a href="#" class="btn btn-green"><i class="fa-solid fa-list-ul me-2"></i>ORDINI</a>
+    <div class="row justify-content-around">
+        <div class="col-12 col-sm-6 col-md-4 mb-3 ">
+            <div class="card card-dash" style="width: 18rem;">
+                    <img src="https://hubicmarketing.it/images/2016/04/elementi-chiave-menu.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">I TUOI PIATTI</h5>
+                    <p class="card-text">Visualizza, modifica e aggiungi i piatti del tuo ristorante.</p>
+                    <a href="{{ route('admin.dishes.index') }}" class="btn btn-green"><i class="fa-solid fa-utensils me-2"></i>VISUALIZZA</a>
+                    {{-- <a href="#" class="btn btn-green"><i class="fa-solid fa-utensils me-2"></i>MENU</a> --}}
+                    </div>
+            </div>
         </div>
-      </div>
+        <div class="col-12 col-sm-6 col-md-4 mb-3">
+            <div class="card card-dash" style="width: 18rem;">
+                    <img src="https://www.zucchetti.it/website/dms/website/soluzioni_per_settori/ordine_478x316.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">I TUOI ORDINI</h5>
+                    <p class="card-text">Visualizza e gestisci tutti gli ordini del tuo ristorante.</p>
+                    {{-- <a href="{{ route('admin.orders.index') }}" class="btn btn-green">ORDINI</a> --}}
+                    <a href="#" class="btn btn-green"><i class="fa-solid fa-list-ul me-2"></i>VISUALIZZA</a>
+                    </div>
+            </div>
+        </div>
+    </div>  
+    
+
+   
 
 
 
