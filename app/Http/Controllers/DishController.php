@@ -44,7 +44,7 @@ class DishController extends Controller
             $data['image'] = $img_url;
         }
         $dish = new Dish();
-        $dish->availability = Arr::exists($data, 'availability') ? 1 : 0;
+        $data['availability'] = Arr::exists($data, 'availability') ? 1 : 0;
         $dish->fill($data);
         $dish->slug = Str::slug($data['name'], '-');
         $dish->restaurant_id = $restaurant_id;
@@ -83,7 +83,7 @@ class DishController extends Controller
             $img_url = Storage::put('dishes', $data['image']);
             $data['image'] = $img_url;
         }
-        $dish->availability = Arr::exists($data, 'availability') ? 1 : 0;
+        $data['availability'] = Arr::exists($data, 'availability') ? 1 : 0;
         $dish->fill($data);
         $dish->slug = Str::slug($data['name'], '-');
         $dish->save();
@@ -100,7 +100,7 @@ class DishController extends Controller
             Storage::delete($dish->image);
         }
         $dish->delete();
-        return to_route('auth.dishes.index');
+        return to_route('admin.dishes.index');
     }
 
     private function validation(Request $request)
@@ -110,7 +110,7 @@ class DishController extends Controller
                 'name' => 'string|required|min:5',
                 'description' => 'string|required|min:5',
                 'price' => 'required|numeric|min:0.1|max:150',
-                'availability' => 'nullable|boolean',
+                'availability' => 'nullable',
                 'image' => 'nullable|image|mimes:jpeg,jpg,svg,png',
             ],
             [
@@ -124,7 +124,6 @@ class DishController extends Controller
                 'price.numeric' => 'Il prezzo inserito non è valido.',
                 'price.min' => 'Il prezzo minimo è di :min €.',
                 'price.max' => 'Il prezzo massimo è di :max €.',
-                'availability.boolean' => 'Il valore inserito per la disponibilità non è valido.',
                 'image.mimes' => 'Le estensioni valide per le immagini sono :mimes.',
                 'image.image' => 'L\'immagine deve essere un\'immagine valida.',
             ]
