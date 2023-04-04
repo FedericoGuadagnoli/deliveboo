@@ -7,7 +7,7 @@
             @foreach ($dishes as $dish)
                 <div class="col-4">
                     <div class="card my-4">
-                        <img src="{{ asset('storage/' . $dish->image) }}" alt="">
+                        <img src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->slug }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $dish->name }}</h5>
                             <p class="card-text">{{ $dish->description }}</p>
