@@ -38,8 +38,8 @@
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger"><i
-                                            class="fa-solid fa-trash-can"></i>
+                                    <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Sei sicuro?')">
+                                        <i class="fa-solid fa-trash-can"></i>
                                         Elimina
                                     </button>
                                 </form>
