@@ -13,7 +13,8 @@
                 <div class="col-4 p-4">
 
                     <div class="card">
-                        <img class="image-card" src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->slug }}">
+                        <img class="image-card rounded-top" src="{{ asset('storage/' . $dish->image) }}"
+                            alt="{{ $dish->slug }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $dish->name }}</h5>
                             <p class="card-text">{{ $dish->description }}</p>
