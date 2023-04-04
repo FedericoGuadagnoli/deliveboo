@@ -28,7 +28,7 @@
                             <div class="d-flex justify-content-around">
                                 <a href="{{ route('admin.dishes.show', $dish->id) }}" class="btn btn-outline-primary"><i
                                         class="fa-solid fa-eye"></i>
-                                    Osserva
+                                    Mostra
                                 </a>
                                 <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-outline-warning"><i
                                         class="fa-solid fa-pencil"></i>
