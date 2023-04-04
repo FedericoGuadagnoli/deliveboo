@@ -34,7 +34,7 @@
 </div>
 <div class="col-1 d-flex align-items-center">
     <img src="{{ $dish->image ? asset('storage/' . $dish->image) : 'https://www.innerintegratori.it/wp-content/uploads/2021/06/placeholder-image-300x225.png' }}"
-        alt="image-preview" id="image-preview" class="img-fluid">
+        alt="image-preview" id="image-preview" class="img-fluid h-100">
 </div>
 
 <div class="col-4">
