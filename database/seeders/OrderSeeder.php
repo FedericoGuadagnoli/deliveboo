@@ -41,7 +41,7 @@ class OrderSeeder extends Seeder
                 }
 
                 // $dish->orders()->attach($order->id, ['quantity' => ]);
-                $order->dishes()->attach($dishes, ['quantity' => 4]);
+                $order->dishes()->attach($dishes, ['quantity' => $faker->randomDigitNotNull()]);
             }
         }
     }
