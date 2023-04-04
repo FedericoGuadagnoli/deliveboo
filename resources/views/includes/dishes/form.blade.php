@@ -1,5 +1,5 @@
 @if ($dish->exists)
-    <form action="{{ route('admin.dishes.update', $dish->id) }}" method="POST" class="row g-3"
+    <form action="{{ route('admin.dishes.update', $dish->id) }}" method="POST" class="row g-3 text-white"
         enctype="multipart/form-data" novalidate>
         @method('PUT')
     @else
@@ -21,8 +21,8 @@
 <div class="col-7" id="upload-image">
     <label for="image" class="form-label">Foto piatto:</label>
     <div class="input-group mb-3">
-        <button type="button" class="btn btn-primary rounded-end" id="show-image-input"
-            style='display:{{ $dish->exists ? 'block' : 'none' }}'>Cambia immagine</button>
+        <button type="button" class="btn btn-success rounded-end" id="show-image-input"
+            style='display:{{ $dish->exists ? 'block' : 'none' }}'><i class="fa-regular fa-image"></i> Cambia immagine</button>
         <input type="file" class="form-control rounded-start @error('image') is-invalid @enderror" id="image"
             name="image" style='display:{{ $dish->exists ? 'none' : 'block' }}' onchange="preview(event)">
         @error('image')
