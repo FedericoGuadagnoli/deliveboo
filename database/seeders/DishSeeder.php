@@ -184,6 +184,7 @@ class DishSeeder extends Seeder
                 $new_dish->restaurant_id = $restaurant;
                 $new_dish->fill($dish);
                 $new_dish->slug = Str::slug($new_dish->name, '-');
+                $new_dish->image = 'dishes/' . $new_dish->slug . '.jpg';
                 $new_dish->save();
             }
         }
