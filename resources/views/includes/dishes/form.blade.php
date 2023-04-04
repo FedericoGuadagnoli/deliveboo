@@ -68,7 +68,7 @@
 </div>
 
 <div class="text-end mt-5">
-    <a class="btn btn-secondary"
+    <a class="btn btn-danger"
         href="@if ($dish->exists) {{ route('admin.dishes.show', $dish->id) }}
     @else
     {{ route('admin.dishes.index') }} @endif">Annulla</a>
