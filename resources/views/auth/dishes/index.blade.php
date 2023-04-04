@@ -13,12 +13,22 @@
                             <p class="card-text">{{ $dish->description }}</p>
                             <p><strong>€ {{ $dish->price }}</strong></p>
                             <div class="d-flex justify-content-around">
-                                <a href="" class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i>
+                                <a href="{{ route('admin.dishes.show', $dish->id) }}" class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i>
                                     Osserva
                                 </a>
-                                <a href="" class="btn btn-outline-success"><i class="fa-solid fa-pencil"></i>
+                                <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-outline-warning"><i class="fa-solid fa-pencil"></i>
                                     Modifica
                                 </a>
+                                <form class="delete-form d-inline"  action="{{route("admin.dishes.destroy", $dish->id)}}" method="POST">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i>
+                                        Elimina
+                                    </button>
+                                  </form>
+                                {{-- <a href="" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i>
+                                    Elimina
+                                </a> --}}
                             </div>
                         </div>
                     </div>
