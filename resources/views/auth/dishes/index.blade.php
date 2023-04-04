@@ -6,6 +6,8 @@
         <div class="row dashboard justify-content-around">
             @foreach ($dishes as $dish)
                 <div class="col-4">
+                    <a href="{{ route('admin.dishes.create', $dish->id) }}" class="btn btn-outline-light"><i
+                            class="fa-solid fa-plus me-2"></i>Aggiungi</a>
                     <div class="card my-4">
                         <img src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->slug }}">
                         <div class="card-body">
