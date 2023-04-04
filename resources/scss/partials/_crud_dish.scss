@@ -4,14 +4,23 @@
 // }
 
 .card-show {
-    height:260px
+    height: 260px
 }
 
 .fa-arrow-left {
-    
+
     font-size: 50px;
 }
 
 .text-green {
     color: $primary-color;
+}
+
+.image-card {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card {
+    height: 100%;
 }
