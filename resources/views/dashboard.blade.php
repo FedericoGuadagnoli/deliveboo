@@ -22,7 +22,7 @@
                     <h5 class="card-title fw-bold">I TUOI ORDINI</h5>
                     <p class="card-text">Visualizza e gestisci tutti gli ordini del tuo ristorante.</p>
                     {{-- <a href="{{ route('admin.orders.index') }}" class="btn btn-green">ORDINI</a> --}}
-                    <a href="#" class="btn btn-green"><i class="fa-solid fa-list-ul me-2"></i>VISUALIZZA</a>
+                    <a href="{{ route('admin.orders.index') }}" class="btn btn-green"><i class="fa-solid fa-list-ul me-2"></i>VISUALIZZA</a>
                     </div>
             </div>
         </div>
