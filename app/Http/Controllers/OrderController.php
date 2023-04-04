@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -12,7 +14,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = Auth::id();
+        $orders = DB::table('restaurants')
+            ->join('dishes', 'restaurants.id', '=', 'dishes.restaurant_id')
+            ->join('dish_order', 'dishes.id', '=', 'dish_order.dish_id')
+            ->join('orders', 'orders.id', '=', 'dish_order.order_id')
+            ->select('orders.*')
+            ->where('dishes.restaurant_id', $user_id)
+            ->paginate(15);
+        return view('auth.orders.index', compact('orders'));
     }
 
     /**
@@ -36,7 +46,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('auth.orders.show', compact('order'));
     }
 
     /**
