@@ -2,15 +2,21 @@
 
 @section('content')
     <div class="container py-4">
+        @if  ($dishes->count() === 0)
+        <h1 class="text-center text-white mt-5">Non c'è nessun piatto ancora!</h1>
+    @else
         <h1 class="text-center text-white">Lista Piatti</h1>
-        <div class="row dashboard justify-content-around">
-            <div class="d-flex justify-content-end">
-                <a href="{{ route('admin.dishes.create') }}" class="btn btn-success"><i
-                        class="fa-solid fa-plus me-2"></i>Aggiungi
-                    Piatto</a>
-            </div>
+    @endif
+
+    <div class="d-flex justify-content-end">
+        <a href="{{ route('admin.dishes.create') }}" class="btn btn-success"><i
+                class="fa-solid fa-plus me-2"></i>Aggiungi
+            Piatto</a>
+    </div>
+        <div class="row justify-content-around mt-3">
+            
             @foreach ($dishes as $dish)
-                <div class="col-4 p-4">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3 py-3">
 
                     <div class="card">
                         <img class="image-card rounded-top" src="{{ asset('storage/' . $dish->image) }}"
