@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DishController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Dish;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::resource('dishes', DishController::class);
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 });
 
 require __DIR__ . '/auth.php';

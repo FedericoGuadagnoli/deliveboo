@@ -17,29 +17,32 @@ class OrderSeeder extends Seeder
      */
     public function run(Generator $faker): void
     {
-        $restaurant_id = Restaurant::pluck('id')->toArray();
-        $dish_id = Dish::where('restaurant_id', 1)->pluck('id')->toArray();
+        $restaurants_id = Restaurant::pluck('id')->toArray();
 
-        for ($i = 0; $i < 10; $i++) {
-            $order = new Order();
-            $order->first_name = $faker->firstName();
-            $order->last_name = $faker->lastName();
-            $order->email = $faker->email();
-            $order->address = $faker->streetAddress();
-            $order->phone = $faker->phoneNumber();
-            $order->payment_status = $faker->boolean();
-            $order->total_price = $faker->randomFloat(2, 5, 500);
-            $order->delivery_time = $faker->time('H:i');
-            $order->save();
-            $dishes = [];
-            foreach ($dish_id as $dish) {
-                if (rand(0, 1)) {
-                    $dishes[] = $dish;
+        foreach ($restaurants_id as $restaurant) {
+
+            for ($i = 0; $i < 10; $i++) {
+                $dish_id = Dish::where('restaurant_id', $restaurant)->pluck('id')->toArray();
+                $order = new Order();
+                $order->first_name = $faker->firstName();
+                $order->last_name = $faker->lastName();
+                $order->email = $faker->email();
+                $order->address = $faker->streetAddress();
+                $order->phone = $faker->phoneNumber();
+                $order->payment_status = $faker->boolean();
+                $order->total_price = $faker->randomFloat(2, 5, 500);
+                $order->delivery_time = $faker->time('H:i');
+                $order->save();
+                $dishes = [];
+                foreach ($dish_id as $dish) {
+                    if (rand(0, 1)) {
+                        $dishes[] = $dish;
+                    }
                 }
-            }
 
-            // $dish->orders()->attach($order->id, ['quantity' => ]);
-            $order->dishes()->attach($dishes, ['quantity' => 4]);
+                // $dish->orders()->attach($order->id, ['quantity' => ]);
+                $order->dishes()->attach($dishes, ['quantity' => 4]);
+            }
         }
     }
 }
