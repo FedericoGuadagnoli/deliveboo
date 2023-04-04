@@ -35,6 +35,7 @@
                                 {{-- <a href="" class="btn btn-outline-danger"><i class="fa-solid fa-trash-can"></i>
                                         Elimina
                                     </a> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
