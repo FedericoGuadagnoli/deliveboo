@@ -21,6 +21,7 @@ class OrderController extends Controller
             ->join('orders', 'orders.id', '=', 'dish_order.order_id')
             ->select('orders.*')
             ->where('dishes.restaurant_id', $user_id)
+            ->orderBy('created_at', 'DESC')
             ->paginate(15);
         return view('auth.orders.index', compact('orders'));
     }
