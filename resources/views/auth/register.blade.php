@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" novalidate>
+                        <form method="POST" class="submit-form" action="{{ route('register') }}" enctype="multipart/form-data" novalidate>
                             @csrf
                             <div class="mb-4 row">
                                 <label for="name"
@@ -210,7 +210,7 @@
                                 <div class="col-md-6">
                                     @forelse ($types as $type)
                                         <div class="form-check form-check-inline @error('types') is-invalid @enderror">
-                                            <input class="form-check-input" type="checkbox"
+                                            <input class="form-check-input types" type="checkbox"
                                                 id="type-{{ $type->id }}" value="{{ $type->id }}"
                                                 name="types[]" {{-- @if (count(old()) && !old('types')) @elseif(in_array($type->id, old('types', $project_technologies ?? []))) checked @endif --}}>
                                             <label class="form-check-label"
@@ -236,6 +236,9 @@
                                 </div>
                             </div>
                         </form>
+                        @section('scripts')
+                        @include('auth.user-form-validation')
+                        @endsection
                     </div>
                 </div>
             </div>
