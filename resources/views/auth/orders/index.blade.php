@@ -1,7 +1,67 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+
+
+<div class="container py-5">
+    @if  ($orders->count() === 0)
+    <h1 class="text-center text-white mt-5">Non ci sono ordini da mostrare</h1>
+@else
+    <h1 class="text-center text-white">I Tuoi Ordini</h1>
+@endif
+<div class="mb-3">
+    <a href="{{ route('dashboard') }}"><i
+            class="fa-solid fa-arrow-left fa-2x text-green"></i></a>
+</div>
+{{-- {{ $orders->links() }} --}}
+
+    <table class="table table-light table-hover">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Data</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Cognome</th>
+            <th scope="col">Indirizzo</th>
+            <th scope="col">E-Mail</th>
+            <th scope="col">Telefono</th>
+            {{-- <th scope="col">Quantità</th> --}}
+            <th scope="col">Status</th>
+            <th scope="col">Totale</th>
+            <th scope="col">Dettagli</th>
+        </tr>
+        </thead>
+        <tbody>
+            @foreach($orders as $order)
+                <tr>
+                    <th class="align-middle" scope="row">{{ $order->id }}</th>
+                    <td class="align-middle">{{ $order->created_at }}</td>
+                    <td class="align-middle">{{ $order->first_name }}</td>
+                    <td class="align-middle">{{ $order->last_name }}</td>
+                    <td class="align-middle">{{ $order->address }}</td>
+                    <td class="align-middle">{{ $order->email }}</td>
+                    <td class="align-middle">{{ $order->phone }}</td>
+                    {{-- @foreach($order->dishes as $dish)
+                    <td>{{ $dish->pivot->quantity }}</td>
+                    @endforeach --}}
+                    <td class="text-center align-middle">{!! $order->payment_status == 1 ? '<i class="fa-solid fa-check text-success"></i>' : '<i class="fa-solid fa-xmark text-danger"></i>' !!}</td>
+                    <td class="align-middle">€ {{ $order->total_price }}</td>
+                    <td> <a href="#" class="btn btn-outline-primary mt-1"><i class="fa-solid fa-eye"></i></a></td>
+                        
+                </tr>
+            @endforeach
+        </tbody>
+  </table>
+  {{ $orders->links() }}
+</div>
+
+
+
+
+
+
+
+    {{-- <div class="container py-4">
         <div class="row justify-content-around nt-3">
             @foreach ($orders as $order)
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3 py-3">
@@ -25,7 +85,7 @@
                           {{-- <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-outline-primary"><i
                             class="fa-solid fa-eye"></i>
                         Mostra
-                    </a> --}}
+                    </a> 
                         </div>
                       </div>
 
@@ -33,5 +93,5 @@
             @endforeach
             
         </div>
-    </div>
+    </div> --}}
 @endsection

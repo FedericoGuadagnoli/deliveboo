@@ -72,7 +72,7 @@
         href="@if ($dish->exists) {{ route('admin.dishes.show', $dish->id) }}
     @else
     {{ route('admin.dishes.index') }} @endif">Annulla</a>
-    <button class="btn btn-success">Salva</button>
+    <button class="btn btn-success" onclick="return confirm('Sei sicuro?')">Salva</button>
 </div>
 </form>
 
