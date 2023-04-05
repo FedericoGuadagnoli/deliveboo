@@ -34,18 +34,19 @@
         <tbody>
             @foreach($orders as $order)
                 <tr>
-                    <th class="align-middle" scope="row">{{ $order->id }}</th>
-                    <td class="align-middle">{{ $order->created_at }}</td>
-                    <td class="align-middle">{{ $order->first_name }}</td>
-                    <td class="align-middle">{{ $order->last_name }}</td>
-                    <td class="align-middle">{{ $order->address }}</td>
-                    <td class="align-middle">{{ $order->email }}</td>
-                    <td class="align-middle">{{ $order->phone }}</td>
+                    <th class="align-middle pointer" scope="row">{{ $order->id }}</th>
+                    <td class="align-middle pointer">{{ \Carbon\Carbon::parse($order->created_at)->format('d-m-Y H:i') }}</td>
+
+                    <td class="align-middle pointer">{{ $order->first_name }}</td>
+                    <td class="align-middle pointer">{{ $order->last_name }}</td>
+                    <td class="align-middle pointer ">{{ $order->address }}</td>
+                    <td class="align-middle pointer ">{{ $order->email }}</td>
+                    <td class="align-middle pointer ">{{ $order->phone }}</td>
                     {{-- @foreach($order->dishes as $dish)
                     <td>{{ $dish->pivot->quantity }}</td>
                     @endforeach --}}
-                    <td class="text-center align-middle">{!! $order->payment_status == 1 ? '<i class="fa-solid fa-check text-success"></i>' : '<i class="fa-solid fa-xmark text-danger"></i>' !!}</td>
-                    <td class="align-middle">€ {{ $order->total_price }}</td>
+                    <td class="text-center align-middle pointer">{!! $order->payment_status == 1 ? '<i class="fa-solid fa-check text-success"></i>' : '<i class="fa-solid fa-xmark text-danger"></i>' !!}</td>
+                    <td class="align-middle pointer">€ {{ $order->total_price }}</td>
                     <td> <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-outline-primary mt-1"><i class="fa-solid fa-eye"></i></a></td>
                         
                 </tr>

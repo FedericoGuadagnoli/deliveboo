@@ -18,7 +18,7 @@
                                     class="fa-solid fa-arrow-left fa-2x text-green"></i></a>
                         </div>
                         <div class="col-11">
-                            <h2 class="fw-bold text-white">{{ $dish->name }}</h2>
+                            <h2 class="fw-bold text-white d-none d-md-block">{{ $dish->name }}</h2>
                         </div>
                     </div>
                 </div>
@@ -29,12 +29,14 @@
                         <div class="row g-0">
                             <div class="col-sm-12 col-lg-5">
                                 <img src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->slug }}"
-                                    class="card-show">
+                                    class="card-show img-fluid">
                             </div>
                             <div class="col-sm-12 col-lg-7">
                                 <div class="card-body">
                                     <h3 class="card-title mb-3">Informazioni</h3>
                                     <ul class="list-group mb-3">
+                                        <li class="list-group-item d-block d-md-none">Nome: {{ $dish->name }}</li>
+
                                         <li class="list-group-item">Prezzo: {{ $dish->price }}€</li>
 
                                         <li class="list-group-item">Descrizione: {{ $dish->description }}</li>
