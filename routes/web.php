@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::resource('dishes', DishController::class);
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 });
 
 require __DIR__ . '/auth.php';

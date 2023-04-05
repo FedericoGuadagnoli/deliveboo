@@ -21,8 +21,21 @@ class OrderController extends Controller
             ->join('orders', 'orders.id', '=', 'dish_order.order_id')
             ->select('orders.*')
             ->where('dishes.restaurant_id', $user_id)
-            ->paginate(15);
-        return view('auth.orders.index', compact('orders'));
+            ->groupBy('orders.id')
+            ->orderBy('created_at', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+
+        $total_order = [];
+        foreach ($orders as $order) {
+            $order_id = Order::find($order->id);
+            $order_sum = 0;
+            foreach ($order_id->dishes as $dish) {
+                $order_sum += $dish->pivot->quantity;
+            }
+            $total_order[] = $order_sum;
+        }
+        return view('auth.orders.index', compact('orders', 'total_order'));
     }
 
     /**
