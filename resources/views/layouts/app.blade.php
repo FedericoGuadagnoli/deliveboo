@@ -26,7 +26,8 @@
     <div id="app">
         @include('includes.navbar')
 
-        <main class="">
+        <main class="container">
+            @include('includes.alerts.generic_alert')
             @yield('content')
         </main>
     </div>
