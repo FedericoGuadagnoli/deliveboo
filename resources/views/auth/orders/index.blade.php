@@ -46,7 +46,7 @@
                     @endforeach --}}
                     <td class="text-center align-middle">{!! $order->payment_status == 1 ? '<i class="fa-solid fa-check text-success"></i>' : '<i class="fa-solid fa-xmark text-danger"></i>' !!}</td>
                     <td class="align-middle">€ {{ $order->total_price }}</td>
-                    <td> <a href="#" class="btn btn-outline-primary mt-1"><i class="fa-solid fa-eye"></i></a></td>
+                    <td> <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-outline-primary mt-1"><i class="fa-solid fa-eye"></i></a></td>
                         
                 </tr>
             @endforeach

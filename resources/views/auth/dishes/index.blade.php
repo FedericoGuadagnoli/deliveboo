@@ -27,23 +27,39 @@
                             <h5 class="card-title">{{ $dish->name }}</h5>
                             <p class="card-text">{{ $dish->description }}</p>
                             <p><strong>€ {{ $dish->price }}</strong></p>
-                            <div class="d-flex justify-content-around">
-                                <a href="{{ route('admin.dishes.show', $dish->id) }}" class="btn btn-outline-primary">
-                                    <i class="fa-solid fa-eye"></i>
-                                    <strong class="d-sm-none d-md-block">Mostra</strong>
+                            <div class="d-flex justify-content-around flex-wrap">
+                                <a href="{{ route('admin.dishes.show', $dish->id) }}" class="btn btn-outline-primary d-flex my-1">
+                                    <div>
+                                        <i class="fa-solid fa-eye"></i>
+                                    </div>
+                                    <div class="d-sm-none d-md-block ms-1">
+                                        <strong>Mostra</strong>
+                                    </div>
+                                    
                                 </a>
-                                <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-outline-warning">
-                                    <i class="fa-solid fa-pencil"></i>
-                                    <strong class="d-sm-none d-md-block">Modifica</strong>
+                                <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-outline-warning d-flex my-1">
+                                    <div>
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </div>
+                                    <div class="d-sm-none d-md-block ms-1">
+                                        <strong>Modifica</strong>
+                                    </div>
+
                                 </a>
                                 <form class="delete-form d-inline" action="{{ route('admin.dishes.destroy', $dish->id) }}"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger"
+                                    <button type="submit" class="btn btn-outline-danger d-flex my-1"
                                         onclick="return confirm('Sei sicuro?')">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <strong class="d-sm-none d-md-block">Elimina</strong>
+                                        <div>
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </div>
+                                        <div class="d-sm-none d-md-block ms-1">
+                                            <strong>Elimina</strong>
+                                        </div>
+
+                    
                                     </button>
                                 </form>
 
