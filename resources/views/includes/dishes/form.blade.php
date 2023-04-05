@@ -1,10 +1,10 @@
 @if ($dish->exists)
-    <form action="{{ route('admin.dishes.update', $dish->id) }}" method="POST" class="row g-3 text-white"
+    <form action="{{ route('admin.dishes.update', $dish->id) }}" method="POST" class="row g-3 text-white submit-form"
         enctype="multipart/form-data" novalidate>
         @method('PUT')
     @else
-        <form action="{{ route('admin.dishes.store') }}" method="POST" class="row g-3" enctype="multipart/form-data"
-            novalidate>
+        <form action="{{ route('admin.dishes.store') }}" method="POST" class="row g-3 submit-form"
+            enctype="multipart/form-data" novalidate>
 @endif
 
 @csrf
@@ -12,24 +12,21 @@
     <label for="name" class="form-label">Nome Piatto:</label>
     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
         placeholder="Inserisci nome piatto" value="{{ old('name', $dish->name) }}" required>
-    @error('name')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-    @enderror
+    <div class="invalid-feedback">
+        Il nome inserito non è valido
+    </div>
 </div>
 <div class="col-7" id="upload-image">
     <label for="image" class="form-label">Foto piatto:</label>
     <div class="input-group mb-3">
         <button type="button" class="btn btn-success rounded-end" id="show-image-input"
-            style='display:{{ $dish->exists ? 'block' : 'none' }}'><i class="fa-regular fa-image"></i> Cambia immagine</button>
+            style='display:{{ $dish->exists ? 'block' : 'none' }}'><i class="fa-regular fa-image"></i> Cambia
+            immagine</button>
         <input type="file" class="form-control rounded-start @error('image') is-invalid @enderror" id="image"
             name="image" style='display:{{ $dish->exists ? 'none' : 'block' }}' onchange="preview(event)">
-        @error('image')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
+        <div class="invalid-feedback">
+            L'immagine inserita non è valida
+        </div>
     </div>
 </div>
 <div class="col-1 d-flex align-items-center">
@@ -41,29 +38,25 @@
     <label for="price" class="form-label">Prezzo del piatto:</label>
     <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
         min="0.1" max="150" step="0.1" value="{{ old('price', $dish->price) }}" required>
-    @error('price')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-    @enderror
+    <div class="invalid-feedback">
+        Il prezzo inserito non è valido
+    </div>
 </div>
 
 
 <div class="col-10">
     <label for="description" class="form-label">Descrizione:</label>
     <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" required>{{ old('description', $dish->description) }}</textarea>
-    @error('description')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-    @enderror
+    <div class="invalid-feedback">
+        La descrizione inserita non è valida
+    </div>
 </div>
 
 <div class="col-2 d-flex align-items-end justify-content-end">
     <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="availability" name="availability"
             @if (old('availability', $dish->availability)) checked @endif>
-        <label class="form-check-label" for="availability">Aggiungi al menù</label>
+        <label class="form-check-label" for="availability">Disponibile</label>
     </div>
 </div>
 
@@ -72,7 +65,7 @@
         href="@if ($dish->exists) {{ route('admin.dishes.show', $dish->id) }}
     @else
     {{ route('admin.dishes.index') }} @endif">Annulla</a>
-    <button class="btn btn-success" onclick="return confirm('Sei sicuro?')">Salva</button>
+    <button class="btn btn-success">Salva</button>
 </div>
 </form>
 
@@ -96,5 +89,40 @@
                 reader.readAsDataURL(event.target.files[0]);
             }
         };
+    </script>
+    <script>
+        const name = document.getElementById("name");
+        const price = document.getElementById("price");
+        const description = document.getElementById("description");
+        const form = document.querySelector('.submit-form');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let validation = true;
+
+            if (!name.value || name.value.length < 5) {
+                name.classList.add('is-invalid')
+                validation = false;
+            }
+            if (!price.value || isNaN(price.value) || price.value <= 0) {
+                price.classList.add('is-invalid')
+                validation = false;
+            }
+            if (!description.value || description.value.length < 5) {
+                description.classList.add('is-invalid')
+                validation = false;
+            }
+            const filePath = uploadImage.value;
+            const allowedExtensions =
+                /(\.jpg|\.jpeg|\.png|\.svg)$/i;
+
+            if (!allowedExtensions.exec(filePath) && uploadImage.value) {
+                uploadImage.value = '';
+                uploadImage.classList.add('is-invalid')
+                validation = false;
+            }
+
+            if (validation) form.submit();
+        })
     </script>
 @endsection
