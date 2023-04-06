@@ -20,25 +20,31 @@ class TypeSeeder extends Seeder
         $types = [
             [
                 'name' => 'pizzeria',
+                'image' => 'pizzeria.jpg',
+
             ],
             [
                 'name' => 'sushi',
+                'image' => 'sushi.jpg',
             ],
             [
                 'name' => 'braceria',
+                'image' => 'braceria.jpg',
             ],
             [
                 'name' => 'sea food',
+                'image' => 'sea-food.jpg',
             ],
             [
                 'name' => 'fast-food',
+                'image' => 'fast-food.jpg',
             ],
         ];
 
         foreach ($types as $type) {
             $new_type = new Type();
             $new_type->name = $type['name'];
-            $new_type->image = 'image';
+            $new_type->image = 'types/' . $type['image'];
             $new_type->save();
         }
     }
