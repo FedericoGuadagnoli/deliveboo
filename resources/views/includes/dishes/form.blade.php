@@ -105,14 +105,23 @@
             if (!name.value || name.value.length < 5) {
                 name.classList.add('is-invalid')
                 validation = false;
+            } else {
+                name.classList.remove('is-invalid');
             }
+
+
             if (!price.value || isNaN(price.value) || price.value <= 0) {
                 price.classList.add('is-invalid')
                 validation = false;
+            } else {
+                price.classList.remove('is-invalid');
             }
+
             if (!description.value || description.value.length < 5) {
                 description.classList.add('is-invalid')
                 validation = false;
+            } else {
+                description.classList.remove('is-invalid');
             }
             const filePath = uploadImage.value;
             const allowedExtensions =
@@ -122,6 +131,8 @@
                 uploadImage.value = '';
                 uploadImage.classList.add('is-invalid')
                 validation = false;
+            } else {
+                uploadImage.classList.remove('is-invalid');
             }
 
             if (validation) form.submit();
