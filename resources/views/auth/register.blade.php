@@ -19,7 +19,8 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST" class="submit-form" action="{{ route('register') }}" enctype="multipart/form-data" novalidate>
+                        <form method="POST" class="submit-form" action="{{ route('register') }}"
+                            enctype="multipart/form-data" novalidate>
                             @csrf
                             <div class="mb-4 row">
                                 <label for="name"
@@ -29,11 +30,11 @@
                                     <input id="name" type="text"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
                                         value="{{ old('name') }}" required autocomplete="name" autofocus>
-                                       
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>Il nome è obbligatorio</strong>
-                                        </span>
-                                    
+
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Il nome è obbligatorio</strong>
+                                    </span>
+
                                 </div>
                             </div>
 
@@ -46,9 +47,9 @@
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email">
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>L'email che hai inserito non è valida</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>L'email che hai inserito non è valida</strong>
+                                    </span>
                                 </div>
                             </div>
 
@@ -61,9 +62,9 @@
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password">
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>La password deve essere di almeno 8 caratteri</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>La password deve essere di almeno 8 caratteri</strong>
+                                    </span>
                                 </div>
                             </div>
 
@@ -74,10 +75,10 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
-                                        
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>Le due password inserite non coincidono</strong>
-                                        </span>
+
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Le due password inserite non coincidono</strong>
+                                    </span>
                                 </div>
                             </div>
 
@@ -92,9 +93,9 @@
                                         name="restaurant_name" value="{{ old('restaurant_name') }}" required
                                         autocomplete="restaurant_name" autofocus>
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>Il nome del ristorante è obbligatorio</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Il nome del ristorante è obbligatorio</strong>
+                                    </span>
                                 </div>
                             </div>
 
@@ -107,9 +108,9 @@
                                         class="form-control @error('address') is-invalid @enderror" name="address"
                                         value="{{ old('address') }}" required autocomplete="address" autofocus>
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>L'indirizzo del ristorante è obbligatorio</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>L'indirizzo del ristorante è obbligatorio</strong>
+                                    </span>
                                 </div>
                             </div>
 
@@ -122,9 +123,9 @@
                                         class="form-control @error('p_iva') is-invalid @enderror" name="p_iva"
                                         value="{{ old('p_iva') }}" required autocomplete="p_iva" autofocus>
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>la P.IVA che hai inserito non è valida</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>la P.IVA che hai inserito non è valida</strong>
+                                    </span>
                                 </div>
                             </div>
 
@@ -136,9 +137,9 @@
                                     <input type="file" class="form-control @error('image') is-invalid @enderror"
                                         id="image" name="image">
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>I formati supportati dell'immagine sono: jpg, jpeg, png, svg</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>I formati supportati dell'immagine sono: jpg, jpeg, png, svg</strong>
+                                    </span>
                                 </div>
                             </div>
 
@@ -151,9 +152,9 @@
                                         class="form-control @error('phone') is-invalid @enderror" name="phone"
                                         value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>Il numero di telefono che hai inserito non è valido</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Il numero di telefono che hai inserito non è valido</strong>
+                                    </span>
                                 </div>
                             </div>
 
@@ -167,9 +168,10 @@
                                         name="delivery_cost" value="{{ old('delivery_cost', 0) }}"
                                         autocomplete="delivery_cost" autofocus min='0' max='10'>
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>Il costo di consegna che hai inserito non può essere superiore di 10€</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>Il costo di consegna che hai inserito non può essere superiore di
+                                            10€</strong>
+                                    </span>
                                 </div>
                             </div>
 
@@ -183,9 +185,9 @@
                                         value="{{ old('min_order', 0) }}" autocomplete="min_order" autofocus
                                         min='0'>
 
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>L'ordine minimo che hai inserito non è valido</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>L'ordine minimo che hai inserito non è valido</strong>
+                                    </span>
                                 </div>
                             </div>
 
@@ -199,7 +201,7 @@
                                             <input class="form-check-input types" type="checkbox"
                                                 id="type-{{ $type->id }}" value="{{ $type->id }}"
                                                 name="types[]" @if (in_array($type->id, old('types', []))) checked @endif>
-                                            <label class="form-check-label"
+                                            <label class="form-check-label text-capitalize"
                                                 for="type-{{ $type->id }}">{{ $type->name }}</label>
                                         </div>
                                     @empty
@@ -217,11 +219,12 @@
                                     <button type="submit" class="btn btn-success">
                                         {{ __('Registrati!') }}
                                     </button>
+                                    <a href="{{ route('login') }}" class="btn btn-secondary ms-3">Annulla</a>
                                 </div>
                             </div>
                         </form>
                         @section('scripts')
-                        @include('auth.user-form-validation')
+                            @include('auth.user-form-validation')
                         @endsection
                     </div>
                 </div>
