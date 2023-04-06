@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,12 +18,13 @@ class OrderController extends Controller
     public function index()
     {
         $user_id = Auth::id();
+        $restaurant = Restaurant::where('user_id', $user_id)->first();
         $orders = DB::table('restaurants')
             ->join('dishes', 'restaurants.id', '=', 'dishes.restaurant_id')
             ->join('dish_order', 'dishes.id', '=', 'dish_order.dish_id')
             ->join('orders', 'orders.id', '=', 'dish_order.order_id')
             ->select('orders.*')
-            ->where('dishes.restaurant_id', $user_id)
+            ->where('dishes.restaurant_id', $restaurant->id)
             ->groupBy('orders.id')
             ->orderBy('created_at', 'DESC')
             ->orderBy('id', 'DESC')
