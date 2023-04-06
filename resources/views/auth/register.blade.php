@@ -74,12 +74,13 @@
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
                                         name="password_confirmation" required autocomplete="new-password">
+                                        
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>Le due password inserite non coincidono</strong>
+                                        </span>
                                 </div>
                             </div>
 
-                            <span class="invalid-feedback" role="alert">
-                                <strong>Le due password inserite non coincidono</strong>
-                            </span>
 
                             <div class="mb-4 row">
                                 <label for="restaurant-name"
