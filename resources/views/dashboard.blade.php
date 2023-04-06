@@ -3,8 +3,8 @@
 @section('content')
 <div class="container dashboard">
 
-    <div class="row justify-content-around">
-        <div class="col-12 col-sm-6 col-md-4 mb-3 ">
+    <div class="row justify-content-around d-wrap">
+        <div class="col-12 col-md-4 mb-3 ">
             <div class="card card-dash" style="width: 18rem;">
                     <img src="https://hubicmarketing.it/images/2016/04/elementi-chiave-menu.jpg" class="card-img-top" alt="...">
                     <div class="card-body text-center">
@@ -15,7 +15,7 @@
                     </div>
             </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-4 mb-3">
+        <div class="col-12 col-md-4 mb-3">
             <div class="card card-dash" style="width: 18rem;">
                     <img src="https://www.zucchetti.it/website/dms/website/soluzioni_per_settori/ordine_478x316.jpg" class="card-img-top" alt="...">
                     <div class="card-body text-center">
