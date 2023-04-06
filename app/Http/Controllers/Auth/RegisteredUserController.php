@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -37,10 +38,10 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'restaurant-name' => ['required', 'unique:' . Restaurant::class, 'string'],
+            'restaurant_name' => ['required', 'unique:' . Restaurant::class . ',name', 'string'],
             'address' => ['required', 'string'],
             'p_iva' => ['required', 'unique:' . Restaurant::class, 'size:11', 'string'],
-            'image' => ['nullable', 'string'],
+            'image' => ['nullable', 'image'],
             'phone' => ['required', 'unique:' . Restaurant::class, 'string'],
             'delivery_cost' => ['nullable', 'numeric', 'max:10', 'min:0'],
             'min_order' => ['nullable', 'numeric', 'max:255', 'min:0'],
@@ -55,14 +56,15 @@ class RegisteredUserController extends Controller
             'email.max' => 'La mail deve avere massimo :max caratteri.',
             'email.unique' => 'La mail inserita è già registrata.',
             'password.required' => 'La password inserita non è valida.',
-            'restaurant-name.required' => 'Devi inserire un nome ristorante valido.',
-            'restaurant-name.unique' => 'Il nome ristorante che hai inserito è già presente.',
+            'restaurant_name.required' => 'Devi inserire un nome ristorante valido.',
+            'restaurant_name.unique' => 'Il nome ristorante che hai inserito è già presente.',
             'address.required' => 'Devi inserire un indirizzo valido.',
             'address.string' => 'Devi inserire un indirizzo valido.',
             'p_iva.required' => 'Devi inserire una partita iva valida.',
             'p_iva.string' => 'Devi inserire una partita iva valida.',
             'p_iva.unique' => 'La partita iva inserita è già presente.',
             'p_iva.size' => 'La partita iva deve avere :size caratteri.',
+            'image.image' => 'L\'immagine inserita non è valida.',
             'phone.required' => 'Devi inserire un numero di telefono valido.',
             'phone.string' => 'Devi inserire un numero di telefono valido.',
             'phone.unique' => 'Il  numero di telefono inserito è già presente.',
@@ -85,8 +87,21 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        $restaurant = new Restaurant();
+
+        $restaurant->user_id = $user->id;
+        $restaurant->name = $request->restaurant_name;
+        $restaurant->address = $request->address;
+        $restaurant->p_iva = $request->p_iva;
+        $restaurant->image = $request->image;
+        $restaurant->phone = $request->phone;
+        $restaurant->delivery_cost = $request->delivery_cost;
+        $restaurant->min_order = $request->min_order;
+        $restaurant->slug = Str::slug($restaurant->name, '-');
+        $restaurant->save();
+
+        Auth::login($user);
+        return redirect(RouteServiceProvider::HOME)->with('type', 'success')->with('msg', 'Complimenti! Abbiamo aggiunto con successo il tuo ristorante.');
     }
 }
