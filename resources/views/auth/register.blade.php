@@ -88,11 +88,11 @@
 
                                 <div class="col-md-6">
                                     <input id="restaurant-name" type="text"
-                                        class="form-control @error('restaurant-name') is-invalid @enderror"
-                                        name="restaurant-name" value="{{ old('restaurant-name') }}" required
-                                        autocomplete="restaurant-name" autofocus>
+                                        class="form-control @error('restaurant_name') is-invalid @enderror"
+                                        name="restaurant_name" value="{{ old('restaurant_name') }}" required
+                                        autocomplete="restaurant_name" autofocus>
 
-                                    @error('restaurant-name')
+                                    @error('restaurant_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -169,12 +169,12 @@
 
                             <div class="mb-4 row">
                                 <label for="delivery_cost"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Costo consegna') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Costo consegna €') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="delivery_cost" type="number"
                                         class="form-control @error('delivery_cost') is-invalid @enderror"
-                                        name="delivery_cost" value="{{ old('delivery_cost') }}"
+                                        name="delivery_cost" value="{{ old('delivery_cost', 0) }}"
                                         autocomplete="delivery_cost" autofocus min='0' max='10'>
 
                                     @error('delivery_cost')
@@ -187,12 +187,12 @@
 
                             <div class="mb-4 row">
                                 <label for="min_order"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Ordine minimo') }}</label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Ordine minimo €') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="min_order" type="number"
                                         class="form-control @error('min_order') is-invalid @enderror" name="min_order"
-                                        value="{{ old('min_order') }}" autocomplete="min_order" autofocus
+                                        value="{{ old('min_order', 0) }}" autocomplete="min_order" autofocus
                                         min='0'>
 
                                     @error('min_order')
@@ -212,7 +212,7 @@
                                         <div class="form-check form-check-inline @error('types') is-invalid @enderror">
                                             <input class="form-check-input" type="checkbox"
                                                 id="type-{{ $type->id }}" value="{{ $type->id }}"
-                                                name="types[]" {{-- @if (count(old()) && !old('types')) @elseif(in_array($type->id, old('types', $project_technologies ?? []))) checked @endif --}}>
+                                                name="types[]" @if (in_array($type->id, old('types', []))) checked @endif>
                                             <label class="form-check-label"
                                                 for="type-{{ $type->id }}">{{ $type->name }}</label>
                                         </div>
@@ -220,9 +220,9 @@
                                         -
                                     @endforelse
                                     @error('types')
-                                        <div class="text-danger">
-                                            {{ $message }}
-                                        </div>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
