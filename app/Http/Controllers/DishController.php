@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dish;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,8 @@ class DishController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $dishes = Dish::where('restaurant_id', $user_id)->paginate(15);
-
+        $restaurant = Restaurant::where('user_id', $user_id)->first();
+        $dishes = Dish::where('restaurant_id', $restaurant->id)->paginate(15);
         return view('auth.dishes.index', compact('dishes'));
     }
 
