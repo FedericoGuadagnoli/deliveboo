@@ -8,7 +8,7 @@
 @endif
 
 @csrf
-<div class="col-6">
+<div class="col-12 col-md-4">
     <label for="name" class="form-label">Nome Piatto:</label>
     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
         placeholder="Inserisci nome piatto" value="{{ old('name', $dish->name) }}" required>
@@ -16,7 +16,22 @@
         Il nome inserito non è valido
     </div>
 </div>
-<div class="col-7" id="upload-image">
+<div class="col-12 col-md-2">
+    <label for="price" class="form-label">Prezzo:</label>
+    <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
+        min="0.1" max="150" step="0.1" value="{{ old('price', $dish->price) }}" required>
+    <div class="invalid-feedback">
+        Il prezzo inserito non è valido
+    </div>
+</div>
+<div class="col-12 col-md-4 d-flex align-items-end justify-content-end">
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="availability" name="availability"
+            @if (old('availability', $dish->availability)) checked @endif>
+        <label class="form-check-label" for="availability">Disponibile</label>
+    </div>
+</div>
+<div class="col-12 col-md-4" id="upload-image">
     <label for="image" class="form-label">Foto piatto:</label>
     <div class="input-group mb-3">
         <button type="button" class="btn btn-success rounded-end" id="show-image-input"
@@ -29,22 +44,15 @@
         </div>
     </div>
 </div>
-<div class="col-1 d-flex align-items-center">
+<div class="col-12 col-md-1 d-flex align-items-center">
     <img src="{{ $dish->image ? asset('storage/' . $dish->image) : 'https://www.innerintegratori.it/wp-content/uploads/2021/06/placeholder-image-300x225.png' }}"
-        alt="image-preview" id="image-preview" class="img-fluid h-100">
-</div>
-
-<div class="col-4">
-    <label for="price" class="form-label">Prezzo del piatto:</label>
-    <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price"
-        min="0.1" max="150" step="0.1" value="{{ old('price', $dish->price) }}" required>
-    <div class="invalid-feedback">
-        Il prezzo inserito non è valido
-    </div>
+        alt="image-preview" id="image-preview" class="img-prw h-100 d-none d-md-block">
 </div>
 
 
-<div class="col-10">
+
+
+<div class="col-12 col-md-10">
     <label for="description" class="form-label">Descrizione:</label>
     <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" required>{{ old('description', $dish->description) }}</textarea>
     <div class="invalid-feedback">
@@ -52,16 +60,10 @@
     </div>
 </div>
 
-<div class="col-2 d-flex align-items-end justify-content-end">
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="availability" name="availability"
-            @if (old('availability', $dish->availability)) checked @endif>
-        <label class="form-check-label" for="availability">Disponibile</label>
-    </div>
-</div>
 
-<div class="text-end mt-5">
-    <a class="btn btn-danger"
+
+<div class="text-start my-5">
+    <a class="btn btn-danger me-2"
         href="@if ($dish->exists) {{ route('admin.dishes.show', $dish->id) }}
     @else
     {{ route('admin.dishes.index') }} @endif">Annulla</a>
