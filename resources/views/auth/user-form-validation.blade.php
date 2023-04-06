@@ -34,7 +34,7 @@
                 validation = false;
             } 
 
-            if (!password.value) {
+            if (!password.value || password.value.length < 8) {
                 password.classList.add('is-invalid');
                 validation = false;
             }
