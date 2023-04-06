@@ -2,11 +2,8 @@
 
 @section('content')
     <div class="container py-4">
-        @if ($dishes->count() === 0)
-            <h1 class="text-center text-white mt-5">Non c'è nessun piatto ancora!</h1>
-        @else
-            <h1 class="text-center text-white">Lista Piatti</h1>
-        @endif
+
+        <h1 class="text-center text-white">Lista Piatti</h1>
 
         <div class="d-flex justify-content-between align-items-center">
             <a href="{{ route('dashboard') }}"><i class="fa-solid fa-arrow-left fa-2x text-green"></i></a>
@@ -17,7 +14,7 @@
 
         <div class="row justify-content-around mt-3">
 
-            @foreach ($dishes as $dish)
+            @forelse ($dishes as $dish)
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3 py-3">
 
                     <div class="card">
@@ -28,16 +25,18 @@
                             <p class="card-text">{{ $dish->description }}</p>
                             <p><strong>€ {{ $dish->price }}</strong></p>
                             <div class="d-flex justify-content-around flex-wrap">
-                                <a href="{{ route('admin.dishes.show', $dish->id) }}" class="btn btn-outline-primary d-flex my-1">
+                                <a href="{{ route('admin.dishes.show', $dish->id) }}"
+                                    class="btn btn-outline-primary d-flex my-1">
                                     <div>
                                         <i class="fa-solid fa-eye"></i>
                                     </div>
                                     <div class="d-sm-none d-md-block ms-1">
                                         <strong>Mostra</strong>
                                     </div>
-                                    
+
                                 </a>
-                                <a href="{{ route('admin.dishes.edit', $dish->id) }}" class="btn btn-outline-warning d-flex my-1">
+                                <a href="{{ route('admin.dishes.edit', $dish->id) }}"
+                                    class="btn btn-outline-warning d-flex my-1">
                                     <div>
                                         <i class="fa-solid fa-pencil"></i>
                                     </div>
@@ -59,7 +58,6 @@
                                             <strong>Elimina</strong>
                                         </div>
 
-                    
                                     </button>
                                 </form>
 
@@ -67,7 +65,9 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <h1 class="text-center text-white mt-5">Non hai ancora registrato piatti!</h1>
+            @endforelse
         </div>
         {{ $dishes->links() }}
     </div>
