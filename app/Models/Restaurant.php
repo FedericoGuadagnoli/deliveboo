@@ -23,4 +23,6 @@ class Restaurant extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected $fillable = ['name', 'address', 'p_iva', 'image', 'phone', 'delivery_cost', 'min_order'];
 }
