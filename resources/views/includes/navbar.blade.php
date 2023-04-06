@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" id="navbar" href="{{ url('/') }}">
-            <figure>
-                <img class="logo-nav"
+            <figure class="m-0 d-flex align-items-center">
+                <img class="logo-nav position-static"
                     src="https://d92mrp7hetgfk.cloudfront.net/images/sites/misc/Boolean/original.png?1623187562"
                     alt="">
             </figure>
