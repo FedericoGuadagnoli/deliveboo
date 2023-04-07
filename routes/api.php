@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DelivebooController;
+use App\Http\Controllers\Api\RestaurantsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/types', [DelivebooController::class, 'sendRestaurantTypes']);
+
+Route::get('/restaurants', [RestaurantsController::class, 'index']);

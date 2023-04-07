@@ -12,6 +12,10 @@ class DelivebooController extends Controller
     {
         $types = Type::orderBy('name')->get();
 
+        foreach ($types as $type) {
+            if ($type->image) $type->image = url('storage/' . $type->image);
+        }
+
         return response()->json(compact('types'));
     }
 }
