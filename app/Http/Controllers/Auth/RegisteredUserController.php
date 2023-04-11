@@ -12,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Illuminate\Support\Str;
@@ -94,7 +95,7 @@ class RegisteredUserController extends Controller
         $restaurant->name = $request->restaurant_name;
         $restaurant->address = $request->address;
         $restaurant->p_iva = $request->p_iva;
-        $restaurant->image = $request->image;
+        $restaurant->image = Storage::put('restaurants', $request->image);
         $restaurant->phone = $request->phone;
         $restaurant->delivery_cost = $request->delivery_cost;
         $restaurant->min_order = $request->min_order;
