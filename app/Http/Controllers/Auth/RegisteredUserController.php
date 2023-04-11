@@ -95,7 +95,7 @@ class RegisteredUserController extends Controller
         $restaurant->name = $request->restaurant_name;
         $restaurant->address = $request->address;
         $restaurant->p_iva = $request->p_iva;
-        $restaurant->image = Storage::put('restaurants', $request->image);
+        $restaurant->image = $request->image ? Storage::put('restaurants', $request->image) : null;
         $restaurant->phone = $request->phone;
         $restaurant->delivery_cost = $request->delivery_cost;
         $restaurant->min_order = $request->min_order;
