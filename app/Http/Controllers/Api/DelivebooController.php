@@ -49,7 +49,13 @@ class DelivebooController extends Controller
 
             if ($this->my_in_array($types_id, $restaurant_types_id)) {
 
-                if ($restaurant['image']) $restaurant['image'] = url('storage/' . $restaurant['image']);
+                if ($restaurant['image']) {
+                    $restaurant['image'] = url('storage/' . $restaurant['image']);
+                } else {
+                    foreach ($restaurant->types as $type) {
+                        $type->image = url('storage/' . $type->image);
+                    }
+                }
                 $restaurants[] = $restaurant;
             }
         }
