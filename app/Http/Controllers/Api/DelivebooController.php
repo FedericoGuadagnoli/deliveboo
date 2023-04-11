@@ -24,7 +24,7 @@ class DelivebooController extends Controller
 
     public function sendFilteredRestaurants(Request $request)
     {
-        $types_names = $request->query('types');
+        $types_names = gettype($request->query('types')) == 'array' ? $request->query('types') : [$request->query('types')];
         $types_id = Type::select('id')->whereIn('name', $types_names)->pluck('id')->toArray();
 
         $restaurants_collection =  DB::table('types')
