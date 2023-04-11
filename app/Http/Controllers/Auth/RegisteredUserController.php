@@ -101,6 +101,8 @@ class RegisteredUserController extends Controller
         $restaurant->slug = Str::slug($restaurant->name, '-');
         $restaurant->save();
 
+        $restaurant->types()->attach($request->types);
+
         Auth::login($user);
         return redirect(RouteServiceProvider::HOME)->with('type', 'success')->with('msg', 'Complimenti! Abbiamo aggiunto con successo il tuo ristorante.');
     }
