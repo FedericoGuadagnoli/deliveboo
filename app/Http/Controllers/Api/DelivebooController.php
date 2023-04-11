@@ -47,8 +47,11 @@ class DelivebooController extends Controller
 
             $restaurant_types_id = $restaurant->types->pluck('id')->toArray();
 
+            if ($this->my_in_array($types_id, $restaurant_types_id)) {
 
-            if ($this->my_in_array($types_id, $restaurant_types_id)) $restaurants[] = $restaurant;
+                if ($restaurant['image']) $restaurant['image'] = url('storage/' . $restaurant['image']);
+                $restaurants[] = $restaurant;
+            }
         }
 
         return response()->json(compact('restaurants'));
