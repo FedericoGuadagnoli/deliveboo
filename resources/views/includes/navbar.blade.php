@@ -3,7 +3,7 @@
         <a class="navbar-brand d-flex align-items-center" id="navbar" href="{{ url('/') }}">
             <figure class="m-0 d-flex align-items-center">
                 <img class="logo-nav position-static"
-                    src="https://d92mrp7hetgfk.cloudfront.net/images/sites/misc/Boolean/original.png?1623187562"
+                    src="https://media.istockphoto.com/id/489250858/it/vettoriale/arancio-casa-icona-con-posate.jpg?s=170667a&w=0&k=20&c=iFSOuknr040sWXUy5rfrUa93Ren80TaLEqgURNQJzps="
                     alt="">
             </figure>
             <span class="green-title fw-bold">Delive</span><span class="blue-title fw-bold">Boo</span>

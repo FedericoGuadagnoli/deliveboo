@@ -3,18 +3,17 @@
     font-size: 25px;
 
     .green-title {
-    color: $primary-color;
-}
+        color: $bg-primary;
+    }
 
-.blue-title {
-    color: $secondary-color;
-}
+    .blue-title {
+        color: $secondary-color;
+    }
 
-.logo-nav {
-    height: 50px;
-    position: relative;
-    top: 8px;
-    // margin-top: 15px;
+    .logo-nav {
+        height: 50px;
+        position: relative;
+        top: 8px;
+        // margin-top: 15px;
+    }
 }
-}
-
