@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use App\Models\Type;
+use App\Models\Dish;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,6 +64,14 @@ class DelivebooController extends Controller
         return response()->json(compact('restaurants'));
     }
 
+    public function sendRestaurantDishes($slug)
+    {
+        $restaurant= Restaurant::select('id')->where('slug',$slug)->first();
+       
+        $dishes = Dish::where('restaurant_id', $restaurant->id)->get(['id', 'name', 'description', 'price', 'availability', 'image']);
+ 
+        return response()->json(compact('dishes'));
+    }
 
     private function my_in_array($search, $source)
     {
