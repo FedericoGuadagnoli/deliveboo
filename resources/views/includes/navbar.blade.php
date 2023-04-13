@@ -17,6 +17,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('http://localhost:5174') }}">{{ __('Home') }}</a>
+                </li>
                 @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/dashboard') }}">{{ __('Dashboard') }}</a>
