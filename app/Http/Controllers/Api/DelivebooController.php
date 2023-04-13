@@ -66,13 +66,13 @@ class DelivebooController extends Controller
 
     public function sendRestaurantDishes($slug)
     {
-        $restaurant= Restaurant::select('id')->where('slug',$slug)->first();
+        $restaurant= Restaurant::where('slug',$slug)->first();
        
         $dishes = Dish::where('restaurant_id', $restaurant->id)
               ->where('availability', 1)
               ->get(['id', 'name', 'description', 'price', 'availability', 'image']);
  
-        return response()->json(compact('dishes'));
+        return response()->json(compact('dishes', 'restaurant'));
     }
 
     private function my_in_array($search, $source)
