@@ -68,7 +68,9 @@ class DelivebooController extends Controller
     {
         $restaurant= Restaurant::select('id')->where('slug',$slug)->first();
        
-        $dishes = Dish::where('restaurant_id', $restaurant->id)->get(['id', 'name', 'description', 'price', 'availability', 'image']);
+        $dishes = Dish::where('restaurant_id', $restaurant->id)
+              ->where('availability', 1)
+              ->get(['id', 'name', 'description', 'price', 'availability', 'image']);
  
         return response()->json(compact('dishes'));
     }
