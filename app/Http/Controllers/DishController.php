@@ -20,6 +20,7 @@ class DishController extends Controller
         $user_id = Auth::id();
         $restaurant = Restaurant::where('user_id', $user_id)->first();
         $dishes = Dish::where('restaurant_id', $restaurant->id)->paginate(15);
+
         return view('auth.dishes.index', compact('dishes'));
     }
 
@@ -59,6 +60,11 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
+        $user = Auth::user();
+
+        if ($user->restaurant->id != $dish->restaurant_id) {
+            return redirect()->route('dashboard');
+        }
         return view('auth.dishes.show', compact('dish'));
     }
 
@@ -67,6 +73,11 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
+        $user = Auth::user();
+
+        if ($user->restaurant->id != $dish->restaurant_id) {
+            return redirect()->route('dashboard');
+        }
         return view('auth.dishes.edit', compact('dish'));
     }
 
