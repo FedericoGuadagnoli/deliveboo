@@ -63,6 +63,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        $user = Auth::user();
+        $restaurant_id = $user->restaurant->id;
+        if ($order->dishes[0]->restaurant_id !== $restaurant_id) return to_route('admin.orders.index');
         return view('auth.orders.show', compact('order'));
     }
 
