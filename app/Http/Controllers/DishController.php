@@ -21,7 +21,7 @@ class DishController extends Controller
         $restaurant = Restaurant::where('user_id', $user_id)->first();
         $dishes = Dish::where('restaurant_id', $restaurant->id)->paginate(15);
 
-        return view('auth.dishes.index', compact('dishes'));
+        return view('auth.dishes.index', compact('dishes', 'restaurant'));
     }
 
     /**

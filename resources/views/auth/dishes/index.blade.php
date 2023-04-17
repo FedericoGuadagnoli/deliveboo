@@ -8,8 +8,12 @@
         <div class="d-flex justify-content-between align-items-center">
             <a href="{{ route('dashboard') }}"><i class="fa-solid fa-arrow-left fa-2x text-green"></i></a>
 
-            <a href="{{ route('admin.dishes.create') }}" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Aggiungi
+            <div>
+                <a href='http://localhost:5174/restaurants/{{$restaurant->slug}}' class="btn btn-primary me-2">Visualizza Menù</a>
+                <a href="{{ route('admin.dishes.create') }}" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Aggiungi
                 Piatto</a>
+            </div>
+            
         </div>
 
         <div class="row justify-content-around mt-3">
