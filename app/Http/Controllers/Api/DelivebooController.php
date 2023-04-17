@@ -115,7 +115,6 @@ class DelivebooController extends Controller
         if ($validation->fails()) return response()->json(['errors' => $validation->errors()], 403);
 
         $data = $request->all();
-        dd($data);
         $order = new Order();
         $order->first_name = $data['firstname'];
         $order->last_name = $data['lastname'];
@@ -128,9 +127,8 @@ class DelivebooController extends Controller
         $order->save();
 
         $dishes = $data['dishes'];
-
         foreach ($dishes as $dish) {
-            $order->dishes()->attach($dish->id, ['quantity' => $dish->quantity]);
+            $order->dishes()->attach($dish['id'], ['quantity' => $dish['quantity']]);
         };
 
         return response()->json('success', 200);
