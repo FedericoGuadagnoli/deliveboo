@@ -23,5 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/types', [DelivebooController::class, 'sendRestaurantTypes']);
 Route::get('/restaurants/types', [DelivebooController::class, 'sendFilteredRestaurants']);
 Route::get('/restaurants/{slug}', [DelivebooController::class, 'sendRestaurantDishes']);
+Route::post('/new-order', [DelivebooController::class, 'createNewOrder']);
 
 Route::get('/restaurants', [RestaurantsController::class, 'index']);
