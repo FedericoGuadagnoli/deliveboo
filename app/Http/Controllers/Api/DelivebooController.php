@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Restaurant;
 use App\Models\Type;
 use App\Models\Dish;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class DelivebooController extends Controller
 {
@@ -77,6 +78,62 @@ class DelivebooController extends Controller
         }
 
         return response()->json(compact('dishes', 'restaurant'));
+    }
+
+    public function createNewOrder(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+            'firstname' => ['bail', 'required', 'string', 'max:100'],
+            'lastname' => ['bail', 'required', 'string', 'max:100'],
+            'address' => ['bail', 'required', 'string', 'max:255'],
+            'phone' => ['bail', 'required', 'string', 'max:20'],
+            'email' => ['bail', 'required', 'email', 'max:255'],
+            'delivery_time' => ['bail', 'required', 'date_format:H:i'],
+            'total_price' => ['bail', 'required', 'decimal:2'],
+        ], [
+            'firstname.required' => 'Il nome è obbligatorio.',
+            'firstname.string' => 'Il nome inserito non è valido.',
+            'firstname.max' => 'Il nome può avere massimo :max caratteri.',
+            'lastname.required' => 'Il cognome è obbligatorio.',
+            'lastname.string' => 'Il cognome inserito non è valido.',
+            'lastname.max' => 'Il cognome può avere massimo :max caratteri.',
+            'address.required' => 'L\'indirizzo è obbligatorio.',
+            'address.string' => 'L\'indirizzo inserito non è valido.',
+            'address.max' => 'L\'indirizzo può avere massimo :max caratteri.',
+            'phone.required' => 'Il numero di telefono è obbligatorio.',
+            'phone.string' => 'Il numero di telefono inserito non è valido.',
+            'phone.max' => 'Il numero di telefono può avere massimo :max caratteri.',
+            'email.required' => 'L\'email è obbligatoria.',
+            'email.email' => 'L\'email inserita non è valida.',
+            'email.max' => 'L\'email può avere massimo :max caratteri.',
+            'delivery_time.required' => 'L\'orario di consegna è obbligatorio.',
+            'delivery_time.date' => 'L\'orario di consegna inserito non è valido.',
+            'total_price.required' => 'Il prezzo è obbligatorio.',
+            'total_price.decimal' => 'Il prezzo inserito non è valido.',
+        ]);
+
+        if ($validation->fails()) return response()->json(['errors' => $validation->errors()], 403);
+
+        $data = $request->all();
+        dd($data);
+        $order = new Order();
+        $order->first_name = $data['firstname'];
+        $order->last_name = $data['lastname'];
+        $order->email = $data['email'];
+        $order->address = $data['address'];
+        $order->phone = $data['phone'];
+        $order->payment_status = $data['payment_status'];
+        $order->total_price = $data['total_price'];
+        $order->delivery_time = $data['delivery_time'];
+        $order->save();
+
+        $dishes = $data['dishes'];
+
+        foreach ($dishes as $dish) {
+            $order->dishes()->attach($dish->id, ['quantity' => $dish->quantity]);
+        };
+
+        return response()->json('success', 200);
     }
 
     private function my_in_array($search, $source)
