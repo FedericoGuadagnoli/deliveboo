@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" id="navbar" href="{{ url('/') }}">
+        <a class="navbar-brand d-flex align-items-center" id="navbar" href="{{ url('http://localhost:5174') }}">
             <figure class="m-0 d-flex align-items-center">
                 <img class="logo-nav position-static"
                     src="https://media.istockphoto.com/id/489250858/it/vettoriale/arancio-casa-icona-con-posate.jpg?s=170667a&w=0&k=20&c=iFSOuknr040sWXUy5rfrUa93Ren80TaLEqgURNQJzps="
