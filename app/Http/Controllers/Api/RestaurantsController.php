@@ -13,7 +13,7 @@ class RestaurantsController extends Controller
      */
     public function index()
     {
-        $restaurants = Restaurant::with('types')->get(['id', 'name', 'address', 'p_iva', 'phone', 'delivery_cost', 'min_order']);
+        $restaurants = Restaurant::with('types')->get(['id', 'name', 'address', 'p_iva', 'phone', 'delivery_cost', 'min_order', 'slug']);
 
         return response()->json(['restaurants' => $restaurants]);
     }
