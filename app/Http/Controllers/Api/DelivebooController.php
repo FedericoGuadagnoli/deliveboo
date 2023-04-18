@@ -131,6 +131,8 @@ class DelivebooController extends Controller
             $order->dishes()->attach($dish['id'], ['quantity' => $dish['quantity']]);
         };
 
+
+
         return response()->json('success', 200);
     }
 
