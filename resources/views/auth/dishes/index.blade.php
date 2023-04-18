@@ -19,6 +19,15 @@
         </div>
 
         <div class="row justify-content-around mt-3">
+            <div id="overlay-alert">
+                <div class="alert alert-light" role="alert">
+                    Confermi di voler eliminare il piatto?
+                    <div class="d-flex justify-content-around mt-3">
+                        <button id="delete-confirm" class="btn btn-success">Conferma</button>
+                        <button id="delete-return" class="btn btn-danger">Annulla</button>
+                    </div>
+                </div>
+            </div>
 
             @forelse ($dishes as $dish)
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3 py-3">
@@ -81,10 +90,20 @@
 @section('scripts')
     <script>
         const deleteForms = document.querySelectorAll('.delete-form');
+        const alert = document.getElementById('overlay-alert');
+        const deleteButton = document.getElementById('delete-confirm');
+        const returnButton = document.getElementById('delete-return');
         deleteForms.forEach(form => {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-
+                alert.style.display = 'flex';
+                deleteButton.addEventListener('click', () => {
+                    form.submit();
+                    alert.style.display = 'none';
+                })
+                returnButton.addEventListener('click', () => {
+                    alert.style.display = 'none';
+                })
             })
         });
     </script>
