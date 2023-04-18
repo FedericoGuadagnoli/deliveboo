@@ -52,7 +52,7 @@ class DishController extends Controller
         $dish->restaurant_id = $restaurant_id;
         $dish->save();
 
-        return to_route('admin.dishes.show', $dish->id);
+        return to_route('admin.dishes.show', $dish->id)->with('type', 'success')->with('msg', 'Piatto aggiunto con successo.');
     }
 
     /**
@@ -100,7 +100,7 @@ class DishController extends Controller
         $dish->slug = Str::slug($data['name'], '-');
         $dish->save();
 
-        return to_route('admin.dishes.show', $dish->id);
+        return to_route('admin.dishes.show', $dish->id)->with('type', 'info')->with('msg', 'Piatto modificato correttamente.');
     }
 
     /**
@@ -112,7 +112,7 @@ class DishController extends Controller
             Storage::delete($dish->image);
         }
         $dish->delete();
-        return to_route('admin.dishes.index');
+        return to_route('admin.dishes.index')->with('type', 'danger')->with('msg', 'Il piatto è stato eliminato correttamente.');
     }
 
     private function validation(Request $request)
