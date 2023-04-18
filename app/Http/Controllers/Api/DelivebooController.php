@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderConfirmed;
+use App\Mail\RestaurantMail;
 use App\Models\Restaurant;
 use App\Models\Type;
 use App\Models\Dish;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class DelivebooController extends Controller
@@ -71,7 +74,7 @@ class DelivebooController extends Controller
 
         $dishes = Dish::where('restaurant_id', $restaurant->id)
             ->where('availability', 1)
-            ->get(['id', 'name', 'description', 'price', 'availability', 'image']);
+            ->get(['id', 'name', 'description', 'price', 'availability', 'image', 'restaurant_id']);
 
         foreach ($dishes as $dish) {
             if ($dish->image) $dish->image = url('storage/' . $dish->image);
@@ -112,7 +115,7 @@ class DelivebooController extends Controller
             'total_price.decimal' => 'Il prezzo inserito non è valido.',
         ]);
 
-        if ($validation->fails()) return response()->json(['errors' => $validation->errors()], 403);
+        // if ($validation->fails()) return response()->json(['errors' => $validation->errors()], 403);
 
         $data = $request->all();
         $order = new Order();
@@ -132,6 +135,11 @@ class DelivebooController extends Controller
         };
 
 
+
+        $restaurant = Restaurant::where('id', $dishes[0]['restaurant_id'])->first();
+        Mail::to($restaurant->user->email)->send(new RestaurantMail);
+
+        Mail::to($order->email)->send(new OrderConfirmed);
 
         return response()->json('success', 200);
     }
