@@ -9,11 +9,13 @@
             <a href="{{ route('dashboard') }}"><i class="fa-solid fa-arrow-left fa-2x text-green"></i></a>
 
             <div>
-                <a href='http://localhost:5174/restaurants/{{$restaurant->slug}}' class="btn btn-primary me-2">Visualizza Menù</a>
-                <a href="{{ route('admin.dishes.create') }}" class="btn btn-success"><i class="fa-solid fa-plus me-2"></i>Aggiungi
-                Piatto</a>
+                <a href='http://localhost:5174/restaurants/{{ $restaurant->slug }}' class="btn btn-primary me-2">Visualizza
+                    Menù</a>
+                <a href="{{ route('admin.dishes.create') }}" class="btn btn-success"><i
+                        class="fa-solid fa-plus me-2"></i>Aggiungi
+                    Piatto</a>
             </div>
-            
+
         </div>
 
         <div class="row justify-content-around mt-3">
@@ -53,8 +55,7 @@
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger d-flex my-1"
-                                        onclick="return confirm('Sei sicuro?')">
+                                    <button type="submit" class="btn btn-outline-danger d-flex my-1">
                                         <div>
                                             <i class="fa-solid fa-trash-can"></i>
                                         </div>
@@ -75,4 +76,16 @@
         </div>
         {{ $dishes->links() }}
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        const deleteForms = document.querySelectorAll('.delete-form');
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+            })
+        });
+    </script>
 @endsection
