@@ -65,7 +65,7 @@ class OrderController extends Controller
     {
         $user = Auth::user();
         $restaurant_id = $user->restaurant->id;
-        if ($order->dishes[0]->restaurant_id !== $restaurant_id) return to_route('admin.orders.index')->with('type', 'danger')->with('msg', 'Operazione non autorizzata.');;
+        if ($order->dishes[0]->restaurant_id !== $restaurant_id) return to_route('admin.orders.index')->with('type', 'danger')->with('msg', 'Operazione non autorizzata.');
         return view('auth.orders.show', compact('order'));
     }
 

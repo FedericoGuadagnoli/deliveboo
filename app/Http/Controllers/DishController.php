@@ -63,7 +63,7 @@ class DishController extends Controller
         $user = Auth::user();
 
         if ($user->restaurant->id != $dish->restaurant_id) {
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard')->with('type', 'danger')->with('msg', 'Operazione non autorizzata.');
         }
         return view('auth.dishes.show', compact('dish'));
     }
@@ -76,7 +76,7 @@ class DishController extends Controller
         $user = Auth::user();
 
         if ($user->restaurant->id != $dish->restaurant_id) {
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard')->with('type', 'danger')->with('msg', 'Operazione non autorizzata.');
         }
         return view('auth.dishes.edit', compact('dish'));
     }
