@@ -20,4 +20,10 @@ class Dish extends Model
     {
         return $this->belongsToMany(Order::class)->withPivot('quantity');
     }
+
+    public function getPartialPrice($quantity)
+    {
+        $total = $this->price * $quantity;
+        return number_format($total, 2);
+    }
 }

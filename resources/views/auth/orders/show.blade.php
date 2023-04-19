@@ -4,8 +4,7 @@
     <div class="container py-5">
         <h1 class="text-center text-white">Dettagli Ordine</h1>
         <div class="my-2">
-            <a href="{{ route('admin.orders.index') }}"><i
-                    class="fa-solid fa-arrow-left fa-2x text-green"></i></a>
+            <a href="{{ route('admin.orders.index') }}"><i class="fa-solid fa-arrow-left fa-2x text-green"></i></a>
         </div>
         <div class="card">
             <div class="row g-0">
@@ -45,13 +44,13 @@
                                     {{ $dish->name }}
                                 </div>
                                 <div class="col ps-4">
-                                   x {{ $dish->pivot->quantity }} 
+                                    x {{ $dish->pivot->quantity }}
                                 </div>
                                 <div class="col">
-                                    € {{ $dish->price }} 
+                                    € {{ $dish->price }}
                                 </div>
                                 <div class="col">
-                                    € {{ $dish->pivot->quantity * $dish->price }}
+                                    € {{ $dish->getPartialPrice($dish->pivot->quantity) }}
                                 </div>
                             </div>
                         @endforeach
