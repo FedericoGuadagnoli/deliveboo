@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" id="nav-fix">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" id="navbar" href="{{ url('http://localhost:5174') }}">
             <figure class="m-0 d-flex align-items-center">

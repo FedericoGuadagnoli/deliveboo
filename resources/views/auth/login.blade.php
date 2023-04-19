@@ -13,8 +13,8 @@
                     <div class="card-header fw-bold d-flex align-items-center">
                         <figure class='m-0'>
                             <img class="logo-login"
-                                src="https://d92mrp7hetgfk.cloudfront.net/images/sites/misc/Boolean/original.png?1623187562"
-                                alt="">
+                            src="https://media.istockphoto.com/id/489250858/it/vettoriale/arancio-casa-icona-con-posate.jpg?s=170667a&w=0&k=20&c=iFSOuknr040sWXUy5rfrUa93Ren80TaLEqgURNQJzps="
+                            alt="">
                         </figure>
                         <span class="ms-2">Login</span>
                     </div>
