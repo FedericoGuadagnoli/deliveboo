@@ -115,7 +115,7 @@ class DelivebooController extends Controller
             'total_price.decimal' => 'Il prezzo inserito non è valido.',
         ]);
 
-        if ($validation->fails()) return response()->json(['errors' => $validation->errors()], 403);
+        // if ($validation->fails()) return response()->json(['errors' => $validation->errors()], 403);
 
         $data = $request->all();
         $order = new Order();
@@ -139,7 +139,7 @@ class DelivebooController extends Controller
         $restaurant = Restaurant::where('id', $dishes[0]['restaurant_id'])->first();
         Mail::to($restaurant->user->email)->send(new RestaurantMail);
 
-        Mail::to($order->email)->send(new OrderConfirmed);
+        Mail::to($order->email)->send(new OrderConfirmed($order, $dishes));
 
         return response()->json('success', 200);
     }
