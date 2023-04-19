@@ -13,8 +13,8 @@ class RestaurantMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $restaurant;
-    public $order;
+    protected $restaurant;
+    protected $order;
 
     /**
      * Create a new message instance.
