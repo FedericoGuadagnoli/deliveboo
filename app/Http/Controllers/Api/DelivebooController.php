@@ -115,7 +115,7 @@ class DelivebooController extends Controller
             'total_price.decimal' => 'Il prezzo inserito non è valido.',
         ]);
 
-        // if ($validation->fails()) return response()->json(['errors' => $validation->errors()], 403);
+        if ($validation->fails()) return response()->json(['errors' => $validation->errors()], 403);
 
         $data = $request->all();
         $order = new Order();
