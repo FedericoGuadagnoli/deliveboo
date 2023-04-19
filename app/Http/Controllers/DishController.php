@@ -136,7 +136,7 @@ class DishController extends Controller
                 'price.numeric' => 'Il prezzo inserito non è valido.',
                 'price.min' => 'Il prezzo minimo è di :min €.',
                 'price.max' => 'Il prezzo massimo è di :max €.',
-                'image.mimes' => 'Le estensioni valide per le immagini sono :mimes.',
+                'image.mimes' => 'Le estensioni valide per le immagini sono jpeg,jpg,svg,png.',
                 'image.image' => 'L\'immagine deve essere un\'immagine valida.',
             ]
         );
