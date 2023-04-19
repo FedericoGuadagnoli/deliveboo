@@ -25,11 +25,20 @@
             </div>
             <div class="row">
                 <div class="col-12">
+                    <div id="overlay-alert">
+                        <div class="alert alert-light" role="alert">
+                            Confermi di voler eliminare il piatto?
+                            <div class="d-flex justify-content-around mt-3">
+                                <button id="delete-confirm" class="btn btn-success">Conferma</button>
+                                <button id="delete-return" class="btn btn-danger">Annulla</button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card">
                         <div class="row g-0">
                             <div class="col-sm-12 col-lg-5">
-                                <img src="{{ asset('storage/' . $dish->image) }}" alt="{{ $dish->slug }}"
-                                    class="card-show img-fluid">
+                                <img src="{{ $dish->image ? asset('storage/' . $dish->image) : 'https://www.salepepe.it/files/2019/06/cibo-spazzatura-@salepepe.jpg' }}"
+                                    alt="{{ $dish->slug }}" class="card-show img-fluid">
                             </div>
                             <div class="col-sm-12 col-lg-7">
                                 <div class="card-body">
@@ -55,11 +64,11 @@
                                         Modifica
                                     </a>
                                     <form action="{{ route('admin.dishes.destroy', $dish->id) }}" method="post"
-                                        class="d-inline form-dish-delete">
+                                        class="d-inline form-dish-delete delete-form">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger"
-                                            onclick="return confirm('Sei sicuro?')"><i class="fa-solid fa-trash-can"></i>
+                                        <button type="submit" class="btn btn-outline-danger"><i
+                                                class="fa-solid fa-trash-can"></i>
                                             Elimina
                                         </button>
                                     </form>
@@ -98,28 +107,27 @@
     </div>
 </div> --}}
 @endsection
-{{-- 
-  @section('scripts')
-  <script>
-    const deleteForms = document.querySelectorAll('.form-plate-delete');
-    deleteForms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            Swal.fire({
-            title: 'Attenzione',
-            text: "Non potrai più recuperare questo piatto!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sì, elimina!',
-            cancelButtonText: 'Annulla'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                this.submit();
-            }
-        })
+
+
+
+@section('scripts')
+    <script>
+        const deleteForms = document.querySelectorAll('.delete-form');
+        const alert = document.getElementById('overlay-alert');
+        const deleteButton = document.getElementById('delete-confirm');
+        const returnButton = document.getElementById('delete-return');
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert.style.display = 'flex';
+                deleteButton.addEventListener('click', () => {
+                    form.submit();
+                    alert.style.display = 'none';
+                })
+                returnButton.addEventListener('click', () => {
+                    alert.style.display = 'none';
+                })
+            })
         });
-    });
-</script>
-@endsection --}}
+    </script>
+@endsection

@@ -33,7 +33,8 @@
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3 py-3">
 
                     <div class="card">
-                        <img class="image-card rounded-top" src="{{ asset('storage/' . $dish->image) }}"
+                        <img class="image-card rounded-top"
+                            src="{{ $dish->image ? asset('storage/' . $dish->image) : 'https://www.salepepe.it/files/2019/06/cibo-spazzatura-@salepepe.jpg' }}"
                             alt="{{ $dish->slug }}">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <h5 class="card-title text-capitalize">{{ $dish->name }}</h5>
