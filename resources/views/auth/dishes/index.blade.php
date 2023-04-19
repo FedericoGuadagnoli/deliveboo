@@ -36,7 +36,7 @@
                         <img class="image-card rounded-top" src="{{ asset('storage/' . $dish->image) }}"
                             alt="{{ $dish->slug }}">
                         <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">{{ $dish->name }}</h5>
+                            <h5 class="card-title text-capitalize">{{ $dish->name }}</h5>
                             <p class="card-text">{{ $dish->description }}</p>
                             <p><strong>€ {{ $dish->price }}</strong></p>
                             <div class="d-flex justify-content-around flex-wrap">
