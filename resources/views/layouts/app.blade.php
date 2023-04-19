@@ -22,7 +22,7 @@
     @vite(['resources/js/app.js'])
 </head>
 
-<body>
+<body class="pt-5">
     <div id="app">
         @include('includes.navbar')
 

@@ -3,17 +3,17 @@
 @section('content')
     <div class="container py-5">
         <div class=" text-center text-white my-3">
-            <h1 class="fw-bold">DeliveBoo</h1>
+            <h1 class="fw-bold" id="title">DeliveBoo</h1>
             <h4>Il miglior delivery-service del mondo!</h4>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header fw-bold d-flex align-items-baseline">
-                        <figure>
+                        <figure class="pt-3">
                             <img class="logo-login"
-                                src="https://d92mrp7hetgfk.cloudfront.net/images/sites/misc/Boolean/original.png?1623187562"
-                                alt="">
+                            src="https://media.istockphoto.com/id/489250858/it/vettoriale/arancio-casa-icona-con-posate.jpg?s=170667a&w=0&k=20&c=iFSOuknr040sWXUy5rfrUa93Ren80TaLEqgURNQJzps="
+                            alt="">
                         </figure>
                         <span class="ms-2">Entra nel mondo DeliveBoo!</span>
                     </div>
@@ -230,5 +230,6 @@
                 </div>
             </div>
         </div>
+        
     </div>
 @endsection
