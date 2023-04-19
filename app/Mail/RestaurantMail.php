@@ -13,12 +13,16 @@ class RestaurantMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $restaurant;
+    public $order;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($restaurant, $order)
     {
-        //
+        $this->restaurant = $restaurant;
+        $this->order = $order;
     }
 
     /**
@@ -27,7 +31,7 @@ class RestaurantMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Restaurant Mail',
+            subject: 'Nuovo ordine ricevuto!',
         );
     }
 
@@ -36,8 +40,12 @@ class RestaurantMail extends Mailable
      */
     public function content(): Content
     {
+        $order = $this->order;
+        $restaurant = $this->restaurant;
+        $order_link = "http://127.0.0.1:8000/admin/orders/" . $order->id;
         return new Content(
             view: 'mails.OrderReceived',
+            with: compact('order', 'restaurant', 'order_link'),
         );
     }
 

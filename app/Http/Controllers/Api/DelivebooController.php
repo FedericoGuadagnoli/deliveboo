@@ -137,7 +137,7 @@ class DelivebooController extends Controller
 
 
         $restaurant = Restaurant::where('id', $dishes[0]['restaurant_id'])->first();
-        Mail::to($restaurant->user->email)->send(new RestaurantMail);
+        Mail::to($restaurant->user->email)->send(new RestaurantMail($restaurant, $order));
 
         Mail::to($order->email)->send(new OrderConfirmed($order, $dishes));
 
