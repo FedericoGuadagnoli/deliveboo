@@ -13,12 +13,12 @@ class OrderConfirmed extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    public $order;
+    public $dishes;
+    public function __construct($order, $dishes)
     {
-        //
+        $this->order = $order;
+        $this->dishes = $dishes;
     }
 
     /**
